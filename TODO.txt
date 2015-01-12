@@ -1,0 +1,20 @@
+Download glagoljicnog fonta:
+http://kodeks.uni-bamberg.de/AKSL/Schrift/BukyVede.htm
+
+PHP izgleda moze da radi fonetsku transliteraciju:
+http://php.net/manual/en/class.transliterator.php
+Uputstvo nema, navodno ovo uputstvo radi i za PHPov sistem:
+http://userguide.icu-project.org/transforms/general
+
+ceh
+http://stackoverflow.com/questions/23471798/is-there-any-function-in-php-to-convert-all-of-the-eastern-european-fonts-into-s
+
+http://www.omniglot.com/writing/glagolitic.htm
+
+pretraga unicode znakova (dobro za copy/paste):
+http://www.fileformat.info/info/unicode/char/2c00/index.htm
+
+http://www.unicode.org/charts/PDF/U2C00.pdf
+http://abc.amarilisonline.com/wp-content/uploads/2012/02/Jagic1883TranslitGlagKyr.jpg
+http://abc.amarilisonline.com/poreklo-srpskog-jezika-i-pismenosti-u-slikama-glagoljica/
+http://sr.wikipedia.org/wiki/%D0%93%D0%BB%D0%B0%D0%B3%D0%BE%D1%99%D0%B8%D1%86%D0%B0
