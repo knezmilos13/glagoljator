@@ -1,0 +1,10 @@
+.project
+.buildpath
+.settings/
+.idea
+.vagrant
+
+vendor/
+
+# izbacivanje thumbs.db fajlova
+Thumbs.db
