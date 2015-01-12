@@ -8,3 +8,6 @@ vendor/
 
 # izbacivanje thumbs.db fajlova
 Thumbs.db
+
+app/cache
+app/logs
