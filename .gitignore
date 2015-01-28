@@ -9,7 +9,14 @@ vendor/
 # izbacivanje thumbs.db fajlova
 Thumbs.db
 
-app/cache
-app/logs
-
-/web/bundles/
+# Standardne symfony stvari
+web/bundles/
+app/bootstrap.php.cache
+app/cache/*
+app/config/parameters.yml
+app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+app/phpunit.xml
+build/
+bin/
