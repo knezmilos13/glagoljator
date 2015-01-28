@@ -1,5 +1,10 @@
 {% extends 'BGPGlagoljicaBundle::base.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/bgpglagoljica/css/pocetna.css') }}">
+{% endblock %}
+
 {% block body %}
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
