@@ -11,3 +11,5 @@ Thumbs.db
 
 app/cache
 app/logs
+
+/web/bundles/
