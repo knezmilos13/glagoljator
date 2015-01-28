@@ -8,10 +8,11 @@
 		<meta name="title" content="{{metaTitle}}" />
 		{% block ogImage %}{% endblock %}
         <title>{{title}}</title>
+        {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('bundles/bgpglagoljica/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/bgpglagoljica/css/glavni.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/bgpglagoljica/css/font-awesome.min.css') }}">
-        {% block stylesheets %}{% endblock %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('bundles/bgpglagoljica/images/favicon.png') }}" />
     </head>
     <body>
@@ -44,9 +45,10 @@
 	      </div>
 	    </div>
         {% block body %}{% endblock %}
+        {% block javascripts %}
         <script src="{{ asset('bundles/bgpglagoljica/js/jquery-2.1.3.min.js') }}"></script>
         <script src="{{ asset('bundles/bgpglagoljica/js/lodash.min.js') }}"></script>
         <script src="{{ asset('bundles/bgpglagoljica/js/bootstrap.min.js') }}"></script>
-        {% block javascripts %}{% endblock %}
+        {% endblock %}
     </body>
 </html>
