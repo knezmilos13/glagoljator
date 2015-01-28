@@ -1,3 +1,7 @@
 pocetna:
     path:     /
     defaults: { _controller: BGPGlagoljicaBundle:Pocetna:index }
+
+konvertor:
+    path:     /konvertor
+    defaults: { _controller: BGPGlagoljicaBundle:Konvertor:index }
