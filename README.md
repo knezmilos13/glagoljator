@@ -11,3 +11,8 @@ Lista featurea (slobodno dodati sve sto vam padne na pamet, ovo je brainstorming
 - ???
 
 Svi koji hoce da ucestvuju nek mi se jave na mail, uz predlog sta bi zeleli da rade (sto moze biti nesto od navedenog ili neki novi glagoljicasti feature). Mozete me cimati i za sve tehnicke probleme, naravno.
+
+## Struktura koda
+
+Svi resursi idu u folder od Glagoljica bundlea (src/BGP/GlagoljicaBundle/Resources/public) umesto u top-level folder (app/Resources). Po stavljanju resursa u bundle, mora da se pokrene sledeca naredba u konzoli, u rootu projekta:  
+app/console assets:install
