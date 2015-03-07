@@ -19,15 +19,20 @@ app/console assets:install
 
 ## Konzolni alati & naredbe
 
-*Dizanje ugradjenog php servera (iz foldera projekta, tj. foldera glagoljator):  
+**Dizanje ugradjenog php servera (iz foldera projekta, tj. foldera glagoljator):**  
 php app/console server:run
 
-*Pustanje phpunit testova:  
+**Pustanje phpunit testova:**  
 - Pretpostavka je da se u www folderu nalaze fajlovi phpunit.phar i folder glagoljator  
 php phpunit.phar -c glagoljator/app
 
-*Osvezavanje asseta - ovo je jako bitno; svi asseti su unutar src/BGP/GlagoljicaBundle/Resources, ali da bi sajt radio, moraju da budu prebaceni u web folder. Ovo je sistem namenjen tome da ako imas sto bundlevoa, svaki ima svoje assete, a po "instalaciji" se svi kopiraju na gomilu u web folder odakle se serviraju.  
+**Osvezavanje asseta:**  
+Ovo je jako bitno; svi asseti su unutar src/BGP/GlagoljicaBundle/Resources, ali da bi sajt radio, moraju da budu prebaceni u web folder. Ovo je sistem namenjen tome da ako imas sto bundlevoa, svaki ima svoje assete, a po "instalaciji" se svi kopiraju na gomilu u web folder odakle se serviraju.  
 Postoje dve varijante, windosovci ce hteti ovu:    
 php app/console assets:install  
 A linuksovci ovu:  
-php app/console assets:install --symlink
+php app/console assets:install --symlink  
+
+**Update symfonija i komponenata (ovo je bas osnovna stvar, ali ajde, kad ide sve na gomilu):**  
+(pretpostavka da je composer instaliran globalno, ako je skinut phar fajl onda samo zameniti composer sa putanjom do composer.phar fajla)    
+composer update
