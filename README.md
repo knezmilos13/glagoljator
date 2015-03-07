@@ -23,11 +23,12 @@ app/console assets:install
 php app/console server:run
 
 **Pustanje phpunit testova:**  
-- Pretpostavka je da se u www folderu nalaze fajlovi phpunit.phar i folder glagoljator  
+Pretpostavka je da se u www folderu nalaze fajlovi phpunit.phar i folder glagoljator  
 php phpunit.phar -c glagoljator/app
 
 **Osvezavanje asseta:**  
-Ovo je jako bitno; svi asseti su unutar src/BGP/GlagoljicaBundle/Resources, ali da bi sajt radio, moraju da budu prebaceni u web folder. Ovo je sistem namenjen tome da ako imas sto bundlevoa, svaki ima svoje assete, a po "instalaciji" se svi kopiraju na gomilu u web folder odakle se serviraju.  
+Ovo je jako bitno; svi asseti su unutar src/BGP/GlagoljicaBundle/Resources, ali da bi sajt radio, moraju da budu prebaceni u web folder. Ovo je sistem namenjen tome da ako imas sto bundlevoa, svaki ima svoje assete, a po "instalaciji" se svi kopiraju na gomilu u web folder odakle se serviraju.
+    
 Postoje dve varijante, windosovci ce hteti ovu:    
 php app/console assets:install  
 A linuksovci ovu:  
