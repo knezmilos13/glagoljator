@@ -5,3 +5,11 @@ pocetna:
 konvertor:
     path:     /konvertor
     defaults: { _controller: BGPGlagoljicaBundle:Konvertor:index }
+
+onama:
+    path:     /onama
+    defaults: { _controller: BGPGlagoljicaBundle:Onama:index }
+
+glagoljica:
+    path:     /glagoljica
+    defaults: { _controller: BGPGlagoljicaBundle:Glagoljica:index }
