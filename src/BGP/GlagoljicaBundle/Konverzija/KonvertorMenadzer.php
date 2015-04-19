@@ -44,7 +44,7 @@ class KonvertorMenadzer {
 	public function dajSveUlaze() {
 		$sviUlazi = [ ];
 		foreach($this->konvertori as $konvertor) {
-			array_merge($sviUlazi, $konvertor->dajSveDozvoljeneUlaze());
+			$sviUlazi = array_merge($sviUlazi, $konvertor->dajSveDozvoljeneUlaze());
 		}
 
 		return __($sviUlazi)->uniq(function($vrednost) {
@@ -61,7 +61,7 @@ class KonvertorMenadzer {
 
 		$sviIzlazi = [ ];
 		foreach($this->konvertori as $konvertor) {
-			array_merge($sviIzlazi, $konvertor->dajSveIzlazeZaUlaze($sviUlazi));
+			$sviIzlazi = array_merge($sviIzlazi, $konvertor->dajSveIzlazeZaUlaze($sviUlazi));
 		}
 
 		return __($sviIzlazi)->uniq(function($vrednost) {
@@ -78,7 +78,7 @@ class KonvertorMenadzer {
 	public function dajSveIzlazeZaUlaz($ulaz) {
 		$sviIzlazi = [ ];
 		foreach($this->konvertori as $konvertor) {
-			array_merge($sviIzlazi, $konvertor->dajSveIzlazeZaUlaz($ulaz));
+			$sviIzlazi = array_merge($sviIzlazi, $konvertor->dajSveIzlazeZaUlaz($ulaz));
 		}
 
 		return __($sviIzlazi)->uniq(function($vrednost) {
@@ -95,7 +95,7 @@ class KonvertorMenadzer {
 	public function dajSveIzlazeZaUlaze($ulazi) {
 		$sviIzlazi = [ ];
 		foreach($this->konvertori as $konvertor) {
-			array_merge($sviIzlazi, $konvertor->dajSveIzlazeZaUlaze($ulazi));
+			$sviIzlazi = array_merge($sviIzlazi, $konvertor->dajSveIzlazeZaUlaze($ulazi));
 		}
 
 		return __($sviIzlazi)->uniq(function($vrednost) {
@@ -106,7 +106,7 @@ class KonvertorMenadzer {
 	public function dajSveParoveUlazIzlaz() {
 		$sviParovi = [ ];
 		foreach($this->konvertori as $konvertor) {
-			array_merge($sviParovi, $konvertor->dajSveParoveUlazIzlaz());
+			$sviParovi = array_merge($sviParovi, $konvertor->dajSveParoveUlazIzlaz());
 		}
 
 		// Nema testiranja sta je jedinstveno, po logici sistema ne sme imati duplikata ulaz-izlaz,
