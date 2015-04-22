@@ -4,7 +4,57 @@
 	<h1>Konvertor glagoljice</h1>
 	
 	<form>
-		<textarea> </textarea>
-		<textarea> </textarea>
+		<label>Ulaz:
+			<select id="izbor-ulaza" onchange="dobaviIzlazeZaUlaz(this.value)">
+				<option value="prazno"></option>
+				{% for ulaz in ulazi %}
+			        <option value="{{ ulaz.id }}" >{{ ulaz.ime }}</option>
+			    {% endfor %}
+			</select>
+		</label><br/>
+		<textarea id="tekst-ulaz"> </textarea><br/>
+		<label>Izlaz:
+			<select id="izbor-izlaza"></select>
+		</label><br/>
+		<textarea id="tekst-izlaz"> </textarea><br/>
+        <input type="button" value="Konvertuj" onclick="konvertuj()" />
 	</form>
+	
+	<script>
+    dobaviIzlazeZaUlaz($('#izbor-ulaza').val());
+
+	function dobaviIzlazeZaUlaz(vrednost) {
+        if(vrednost == 'prazno') {
+            $("#izbor-izlaza").find('option').remove();
+        } else {
+            $.get('/dajIzlazeZaUlaz/' + $("#izbor-ulaza").val())
+                .done(function(podaci) {
+                    var $komboIzborIzlaza = $("#izbor-izlaza");
+                    var izlazi = podaci.izlazi;
+                    _.each(izlazi, function(izlaz) {
+                        $komboIzborIzlaza
+                            .append($("<option></option>")
+                            .attr("value", izlaz.id)
+                            .text(izlaz.ime));
+                   });
+                });
+        }
+    }
+
+    function konvertuj() {
+        var ulaz = $("#tekst-ulaz").val();
+        var tipUlaza =  $("#izbor-ulaza").val();
+        var tipIzlaza =  $("#izbor-izlaza").val();
+
+        if(tipUlaza == "prazno") return;
+
+        $.post('/konverzija', {
+            ulaz: ulaz,
+            tipUlaza: tipUlaza,
+            tipIzlaza: tipIzlaza
+        }).always(function(podaci) {
+            $("#tekst-izlaz").val(podaci.konvertovanTekst);
+        });
+    }
+	</script>
 {% endblock %}
