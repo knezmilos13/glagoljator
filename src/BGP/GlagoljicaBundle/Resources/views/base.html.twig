@@ -56,6 +56,11 @@
         {% block javascripts %}
         <script src="{{ asset('bundles/bgpglagoljica/js/lodash.min.js') }}"></script>
         <script src="{{ asset('bundles/bgpglagoljica/js/bootstrap.min.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+                $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+            });
+        </script>
         {% endblock %}
     </body>
 </html>

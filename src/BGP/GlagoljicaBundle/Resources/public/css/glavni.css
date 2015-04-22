@@ -36,7 +36,9 @@ body {
     margin-top: 60px;
 }
 
-
+.nav > .active > a{
+    background-color: #555 !important;
+}
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
