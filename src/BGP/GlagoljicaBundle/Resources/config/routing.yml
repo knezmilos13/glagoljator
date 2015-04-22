@@ -13,3 +13,12 @@ onama:
 glagoljica:
     path:     /glagoljica
     defaults: { _controller: BGPGlagoljicaBundle:Glagoljica:index }
+
+dajIzlazeZaUlaz:
+    path:     /dajIzlazeZaUlaz/{ulaz}
+    defaults: { _controller: BGPGlagoljicaBundle:DajIzlazeZaUlaz:index }
+
+konverzija:
+    path:     /konverzija
+    defaults: { _controller: BGPGlagoljicaBundle:Konverzija:index }
+    methods:  [POST]
