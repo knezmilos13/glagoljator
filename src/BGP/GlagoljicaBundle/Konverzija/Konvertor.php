@@ -58,6 +58,14 @@ abstract class Konvertor {
 	 * @param string $tipIzlaza - identifikujuci string izlaza (npr. "srp-gla")
 	 */
 	abstract public function konvertuj($tipUlaza, $ulaz, $tipIzlaza);
+
+	/**
+	 * Da li ovaj konvertor podrzava zadatu kombinaciju ulaz-izlaz? Mogu biti zadati IDjem ili celim objektom.
+	 * @param $ulaz string|array
+	 * @param $izlaz string|array
+	 * @return boolean
+	 */
+	abstract public function podrzavaLiUlazIzlaz($ulaz, $izlaz);
 	
 }
 

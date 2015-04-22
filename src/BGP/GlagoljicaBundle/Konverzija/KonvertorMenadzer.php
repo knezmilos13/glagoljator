@@ -113,6 +113,23 @@ class KonvertorMenadzer {
 		// tj. ne bi smelo da postoji vise konvertora koji znaju istu stvar da konvertuju (nema logike)
 		return $sviParovi;
 	}
+
+	/**
+	 * Nalazi prvog konvertora koji podrzava zadati tip ulaza/izlaza i konvertuje zadati ulaz.
+	 *
+	 * @param string $tipUlaza - identifikujuci string ulaza (npr. "srp-cir")
+	 * @param string $ulaz - ulaz kojeg treba konvertovati
+	 * @param string $tipIzlaza - identifikujuci string izlaza (npr. "srp-gla")
+	 * @return string|null
+	 */
+	public function konvertuj($tipUlaza, $ulaz, $tipIzlaza) {
+		foreach($this->konvertori as $konvertor) {
+			if($konvertor->podrzavaLiUlazIzlaz($tipUlaza, $tipIzlaza)) {
+				return $konvertor->konvertuj($tipUlaza, $ulaz, $tipIzlaza);
+			}
+		}
+		return null;
+	}
 	
 }
 

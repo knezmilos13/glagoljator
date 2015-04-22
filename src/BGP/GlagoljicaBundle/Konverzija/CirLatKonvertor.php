@@ -5,7 +5,7 @@ namespace BGP\GlagoljicaBundle\Konverzija;
 /**
  * Stara se o konvertovanju srpskih pisama i slicnim peripetijama sa srpskim pismima.
  */
-class CirLatKonvertor {
+class CirLatKonvertor extends Konvertor {
 	
 	private static $cirilica = [ "љ", "њ", "е", "р", "т", "з", "у", "и", "о",
 		"п", "ш", "ђ", "ж", "а", "с", "д", "ф", "г", "х", "ј", "к", "л", 
@@ -23,7 +23,9 @@ class CirLatKonvertor {
 	}
 	
 	public function dajSveIzlazeZaUlaz($ulaz) {
-		if($ulaz['id'] == UlaziIzlazi::$SR_CIRILICA['id'])
+		$idUlaza = is_array($ulaz)? $ulaz['id'] : $ulaz;
+
+		if($idUlaza == UlaziIzlazi::$SR_CIRILICA['id'])
 			return [ UlaziIzlazi::$SR_LATINICA ];
 		else 
 			return [ ];
@@ -32,6 +34,12 @@ class CirLatKonvertor {
 	// Ovaj zna samo cirilica -> latinica
 	public function dajSveParoveUlazIzlaz() {
 		return [ [ UlaziIzlazi::$SR_CIRILICA, UlaziIzlazi::$SR_LATINICA ] ];
+	}
+
+	public function podrzavaLiUlazIzlaz($ulaz, $izlaz) {
+		$idUlaza = is_array($ulaz)? $ulaz['id'] : $ulaz;
+		$idIzlaza = is_array($izlaz)? $izlaz['id'] : $izlaz;
+		return $idUlaza == UlaziIzlazi::$SR_CIRILICA['id'] && $idIzlaza == UlaziIzlazi::$SR_LATINICA['id'];
 	}
 	
 	public function konvertuj($tipUlaza, $ulaz, $tipIzlaza) {
