@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class DajIzlazeZaUlazController extends Controller {
     	
     public function indexAction($ulaz) {
-    	$konvertorMenadzer = new KonvertorMenadzer();
-		$konvertorMenadzer->dodajKonvertor(new CirLatKonvertor());
+	    $konvertorMenadzer = $this->get('konvertor_menadzer');
 		
         $izlazi = $konvertorMenadzer->dajSveIzlazeZaUlaz($ulaz);
 		$rezultat = [ 'izlazi' => $izlazi ];

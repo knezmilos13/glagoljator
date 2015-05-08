@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class KonverzijaController extends Controller {
 
     public function indexAction(Request $zahtev) {
-    	$konvertorMenadzer = new KonvertorMenadzer();
-		$konvertorMenadzer->dodajKonvertor(new CirLatKonvertor());
+    	$konvertorMenadzer = $this->get('konvertor_menadzer');
 
 	    $tipUlaza = $zahtev->request->get("tipUlaza");
 	    $tipIzlaza = $zahtev->request->get("tipIzlaza");

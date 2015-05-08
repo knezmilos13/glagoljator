@@ -1,4 +1,7 @@
 services:
-#    bgp_glagoljica.example:
-#        class: BGP\GlagoljicaBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    cirlat_konvertor:
+        class: BGP\GlagoljicaBundle\Konverzija\CirLatKonvertor
+    konvertor_menadzer:
+        class: BGP\GlagoljicaBundle\Konverzija\KonvertorMenadzer
+        calls:
+            - [dodajKonvertor, ["@cirlat_konvertor"]]

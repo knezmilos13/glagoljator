@@ -8,8 +8,7 @@ use BGP\GlagoljicaBundle\Konverzija\CirLatKonvertor;
 
 class KonvertorController extends Controller {
     public function indexAction() {
-    	$konvertorMenadzer = new KonvertorMenadzer();
-		$konvertorMenadzer->dodajKonvertor(new CirLatKonvertor());
+	    $konvertorMenadzer = $this->get('konvertor_menadzer');
 		
         return $this->render('BGPGlagoljicaBundle:Konvertor:index.html.twig', [
 			'jezik' => 'sr',
