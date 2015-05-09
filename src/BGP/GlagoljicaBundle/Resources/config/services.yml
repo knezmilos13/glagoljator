@@ -1,7 +1,10 @@
 services:
     cirlat_konvertor:
         class: BGP\GlagoljicaBundle\Konverzija\CirLatKonvertor
+    cirgla_konvertor:
+            class: BGP\GlagoljicaBundle\Konverzija\CirGlaKonvertor
     konvertor_menadzer:
         class: BGP\GlagoljicaBundle\Konverzija\KonvertorMenadzer
         calls:
             - [dodajKonvertor, ["@cirlat_konvertor"]]
+            - [dodajKonvertor, ["@cirgla_konvertor"]]
