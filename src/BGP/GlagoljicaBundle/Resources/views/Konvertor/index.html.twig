@@ -1,60 +1,125 @@
 {% extends 'BGPGlagoljicaBundle::stranice.html.twig' %}
 
 {% block content %}
-	<h1>Konvertor glagoljice</h1>
-	
-	<form>
-		<label>Ulaz:
-			<select id="izbor-ulaza" onchange="dobaviIzlazeZaUlaz(this.value)">
-				<option value="prazno"></option>
-				{% for ulaz in ulazi %}
-			        <option value="{{ ulaz.id }}" >{{ ulaz.ime }}</option>
-			    {% endfor %}
-			</select>
-		</label><br/>
-		<textarea id="tekst-ulaz"> </textarea><br/>
-		<label>Izlaz:
-			<select id="izbor-izlaza"></select>
-		</label><br/>
-		<textarea id="tekst-izlaz"> </textarea><br/>
-        <input type="button" value="Konvertuj" onclick="konvertuj()" />
-	</form>
+
+    <style>
+        #tekst-ulaz, #tekst-izlaz {
+            resize: vertical;
+        }
+    </style>
+
+	<h1>Pretvaranje pisma</h1>
+
+    <div class="row">
+        <div class="col-sm-6">
+
+            <div class="form-group">
+                Ulaz:<br/>
+
+                <span class="zona-ulazi">
+                    <div class="btn-group" data-toggle="buttons">
+                        {% for ulaz in ulazi %}
+                            <label class="btn btn-default">
+                                <input type="radio" id="ulaz-{{ ulaz.id }}" autocomplete="off" checked> {{ ulaz.ime }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label for="tekst-ulaz">Unesite tekst koji želite da pretvorite:</label>
+                <textarea id="tekst-ulaz" class="form-control"> </textarea><br/>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                Izlaz:<br/>
+
+                <span id="zona-izlazi">
+                    <button class="btn btn-default" disabled>Izaberite tip ulaza sa leve strane</button>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label for="tekst-izlaz">Rezultat pretvaranja:</label>
+                <textarea id="tekst-izlaz" class="form-control"> </textarea><br/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button id="dugme-konverzija" class="btn btn-primary" disabled>Pretvori</button>
+        </div>
+    </div>
 	
 	<script>
-    dobaviIzlazeZaUlaz($('#izbor-ulaza').val());
+        $('.zona-ulazi').find('.btn').click(onKliknutUlaz);
+        $('#dugme-konverzija').click(onKliknutoDugmeKonverzija);
 
-	function dobaviIzlazeZaUlaz(vrednost) {
-        if(vrednost == 'prazno') {
-            $("#izbor-izlaza").find('option').remove();
-        } else {
-            $.get('/dajIzlazeZaUlaz/' + $("#izbor-ulaza").val())
+        var idUlaza = null;
+        var idIzlaza = null;
+        var konverzijaUToku = false;
+
+        function onKliknutUlaz() {
+            var noviIdUlaza = $(this).find('input').attr('id');
+            noviIdUlaza = noviIdUlaza.substring(5);
+
+            if(noviIdUlaza == idUlaza) {
+                return;
+            } else {
+                idUlaza = noviIdUlaza;
+                $('#dugme-konverzija').prop( "disabled", true );
+                dobaviIzlazeZaUlaz(idUlaza);
+            }
+        }
+
+        function onKliknutIzlaz(element) {
+            idIzlaza = $(element).find('input').attr('id');
+            idIzlaza = idIzlaza.substring(6);
+            $('#dugme-konverzija').prop( "disabled", false );
+        }
+
+        function dobaviIzlazeZaUlaz(idUlaza) {
+            $("#zona-izlazi").html('<button class="btn btn-default m-progress">Učitava se...</button>');
+
+            $.get('/dajIzlazeZaUlaz/' + idUlaza)
                 .done(function(podaci) {
-                    var $komboIzborIzlaza = $("#izbor-izlaza");
+                    var htmlIzlazi = '<div class="btn-group" data-toggle="buttons">';
                     var izlazi = podaci.izlazi;
                     _.each(izlazi, function(izlaz) {
-                        $komboIzborIzlaza
-                            .append($("<option></option>")
-                            .attr("value", izlaz.id)
-                            .text(izlaz.ime));
-                   });
+                        htmlIzlazi +=
+                            '<label class="btn btn-default" onclick="onKliknutIzlaz(this);">'
+                                + '<input type="radio" id="izlaz-' + izlaz.id + '" autocomplete="off" checked>'
+                                    + izlaz.ime
+                            + '</label>';
+                    });
+
+                    htmlIzlazi += "</div>";
+
+                    $("#zona-izlazi").html(htmlIzlazi);
+                    idIzlaza = null;
                 });
         }
-    }
 
-    function konvertuj() {
-        var ulaz = $("#tekst-ulaz").val();
-        var tipUlaza =  $("#izbor-ulaza").val();
-        var tipIzlaza =  $("#izbor-izlaza").val();
+        function onKliknutoDugmeKonverzija() {
+            if(konverzijaUToku) return;
 
-        if(tipUlaza == "prazno") return;
+            konverzijaUToku = true;
+            var ulaz = $("#tekst-ulaz").val();
+            var $dugme = $(this);
+            $dugme.addClass('m-progress');
 
-        $.post('/konverzija', {
-            ulaz: ulaz,
-            tipUlaza: tipUlaza,
-            tipIzlaza: tipIzlaza
-        }).always(function(podaci) {
-            $("#tekst-izlaz").val(podaci.konvertovanTekst);
-        });
-    }
+            $.post('/konverzija', {
+                ulaz: ulaz,
+                tipUlaza: idUlaza,
+                tipIzlaza: idIzlaza
+            }).always(function(podaci) {
+                $dugme.removeClass('m-progress');
+                $("#tekst-izlaz").val(podaci.konvertovanTekst);
+                konverzijaUToku = false;
+            });
+        }
 	</script>
 {% endblock %}
