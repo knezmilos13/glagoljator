@@ -8,3 +8,13 @@ services:
         calls:
             - [dodajKonvertor, ["@cirlat_konvertor"]]
             - [dodajKonvertor, ["@cirgla_konvertor"]]
+    sonata.admin.clanak:
+        class: BGP\GlagoljicaBundle\Admin\ClanakAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Clanak" }
+        arguments:
+            - ~
+            - BGP\GlagoljicaBundle\Entity\Clanak
+            - ~
+        calls:
+            - [ setTranslationDomain, [BGPGlagoljicaBundle]]
