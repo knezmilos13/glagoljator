@@ -1,7 +1,7 @@
 {% for clanak in clanci %}
     <li>
-    	<a href="/article/{{ clanak.id }}">
-	        {{ clanak.naslov }}
+    	<a href="{{path('clanci-glagoljica', {'id': clanak.id, 'slug': clanak.slug}) }}">
+	        {{ clanak.meniNaslov }}
     	</a>
     </li>
 {% endfor %}

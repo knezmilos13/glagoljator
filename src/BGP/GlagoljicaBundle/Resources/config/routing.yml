@@ -10,10 +10,6 @@ onama:
     path:     /onama
     defaults: { _controller: BGPGlagoljicaBundle:Onama:index }
 
-glagoljica:
-    path:     /glagoljica
-    defaults: { _controller: BGPGlagoljicaBundle:Glagoljica:index }
-
 dajIzlazeZaUlaz:
     path:     /dajIzlazeZaUlaz/{ulaz}
     defaults: { _controller: BGPGlagoljicaBundle:DajIzlazeZaUlaz:index }
@@ -22,6 +18,12 @@ konverzija:
     path:     /konverzija
     defaults: { _controller: BGPGlagoljicaBundle:Konverzija:index }
     methods:  [POST]
+
+clanci-glagoljica:
+    path:     /glagoljica/{id}/{slug}
+    defaults: 
+        _controller: BGPGlagoljicaBundle:Glagoljica:index
+        slug: ""
     
 navbar:
     pattern:  /navbar

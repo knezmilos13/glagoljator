@@ -1,6 +1,6 @@
 {% extends 'BGPGlagoljicaBundle::stranice.html.twig' %}
 
 {% block content %}
-    <h1> O glagoljici </h1>
-    <p>Glagoljica je slovensko pismo koje je stvorio Konstantin Filozof, poznatiji kao Sveti Ćirilo, uz pomoć sbog brata Metoda. Dobila je naziv od slovenske reči "glagolati", što znači "govoriti".</p>
+    <h1> {{ clanak.getNaslov() }} </h1>
+    {{ clanak.getTekst() }}
 {% endblock %}
