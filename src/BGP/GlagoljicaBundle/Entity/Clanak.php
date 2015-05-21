@@ -16,11 +16,29 @@ class Clanak {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
 	protected $id;
+
+	/**
+     * Redosled prikaza u meniju. 1 = prvi, itd.
+	 * @ORM\Column(type="integer")
+     */
+	protected $redosled;
+	
+	/**
+	 * Kratak naslov za prikaz u meniju (u prinicpu moze biti isti kao $naslov, ali ne mora)
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $meniNaslov;
 	
 	/**
      * @ORM\Column(type="string", length=200)
      */
     protected $naslov;
+	
+	/**
+     * Za koriscenje u rutama
+	 * @ORM\Column(type="string", length=50)
+     */
+    protected $slug;
 	
 	/**
      * @ORM\Column(type="text")
