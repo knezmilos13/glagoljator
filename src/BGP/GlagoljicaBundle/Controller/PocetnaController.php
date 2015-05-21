@@ -8,7 +8,7 @@ class PocetnaController extends Controller {
     public function indexAction() {
         return $this->render('BGPGlagoljicaBundle:Pocetna:index.html.twig', [
 			'jezik' => 'sr',
-			'metaDescription' => '',
+			'metaDescription' => 'Projekat "Glagoljica" - prvi srpski sajt o glagoljičnom pismu.',
 			'metaTitle' => 'Glagoljica',
 			'title' => 'Glagoljica'
 		]);
