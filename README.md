@@ -37,3 +37,10 @@ php app/console assets:install --symlink
 **Update symfonija i komponenata (ovo je bas osnovna stvar, ali ajde, kad ide sve na gomilu):**  
 (pretpostavka da je composer instaliran globalno, ako je skinut phar fajl onda samo zameniti composer sa putanjom do composer.phar fajla)    
 composer update
+
+**Update entity klasa**  
+Ovo je ako dodas npr. nove atribute u klasu Clanak. Prvo, da generises setere i getere za nove stvari:  
+app/console doctrine:generate:entities BGPGlagoljicaBundle
+
+Drugo, da apdejtujes semu baze podataka:  
+php app/console doctrine:schema:update --force
