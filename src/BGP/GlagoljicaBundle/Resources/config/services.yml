@@ -11,7 +11,10 @@ services:
     sonata.admin.clanak:
         class: BGP\GlagoljicaBundle\Admin\ClanakAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Clanak" }
+            - name: sonata.admin
+              manager_type: orm
+              group: "Sadržaji"
+              label: "Članci"
         arguments:
             - ~
             - BGP\GlagoljicaBundle\Entity\Clanak
