@@ -12,8 +12,8 @@ class GlagoljicaController extends Controller {
     	
         return $this->render('BGPGlagoljicaBundle:Glagoljica:index.html.twig', [
 			'jezik' => 'sr',
-			'metaDescription' => '',
-			'metaTitle' => $clanak->getNaslov(),
+			'metaDescription' => $clanak->getMetaDescription(),
+			'metaTitle' => 'Glagoljica - ' . $clanak->getMetaNaslov(),
 			'title' => $clanak->getNaslov(),
 			'clanak' => $clanak
 		]);

@@ -30,6 +30,18 @@ class Clanak {
     protected $meniNaslov;
 	
 	/**
+	 * Naslov za meta tag, verovatno isti kao naslov
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $metaNaslov;
+	
+	/**
+	 * Naslov za meta description tag
+     * @ORM\Column(type="string", length=500)
+     */
+    protected $metaDescription;
+	
+	/**
      * @ORM\Column(type="string", length=200)
      */
     protected $naslov;
@@ -174,5 +186,53 @@ class Clanak {
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set metaNaslov
+     *
+     * @param string $metaNaslov
+     *
+     * @return Clanak
+     */
+    public function setMetaNaslov($metaNaslov)
+    {
+        $this->metaNaslov = $metaNaslov;
+
+        return $this;
+    }
+
+    /**
+     * Get metaNaslov
+     *
+     * @return string
+     */
+    public function getMetaNaslov()
+    {
+        return $this->metaNaslov;
+    }
+
+    /**
+     * Set metaDescription
+     *
+     * @param string $metaDescription
+     *
+     * @return Clanak
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get metaDescription
+     *
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
     }
 }
