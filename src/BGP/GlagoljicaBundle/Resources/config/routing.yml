@@ -3,7 +3,7 @@ pocetna:
     defaults: { _controller: BGPGlagoljicaBundle:Pocetna:index }
 
 konvertor:
-    path:     /konvertor
+    path:     /pretvaranje
     defaults: { _controller: BGPGlagoljicaBundle:Konvertor:index }
 
 onama:
@@ -22,3 +22,7 @@ konverzija:
     path:     /konverzija
     defaults: { _controller: BGPGlagoljicaBundle:Konverzija:index }
     methods:  [POST]
+    
+navbar:
+    pattern:  /navbar
+    defaults: { _controller: BGPGlagoljicaBundle:Navbar:index}
