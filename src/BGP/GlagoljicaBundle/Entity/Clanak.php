@@ -103,4 +103,76 @@ class Clanak {
     {
         return $this->tekst;
     }
+
+    /**
+     * Set redosled
+     *
+     * @param integer $redosled
+     *
+     * @return Clanak
+     */
+    public function setRedosled($redosled)
+    {
+        $this->redosled = $redosled;
+
+        return $this;
+    }
+
+    /**
+     * Get redosled
+     *
+     * @return integer
+     */
+    public function getRedosled()
+    {
+        return $this->redosled;
+    }
+
+    /**
+     * Set meniNaslov
+     *
+     * @param string $meniNaslov
+     *
+     * @return Clanak
+     */
+    public function setMeniNaslov($meniNaslov)
+    {
+        $this->meniNaslov = $meniNaslov;
+
+        return $this;
+    }
+
+    /**
+     * Get meniNaslov
+     *
+     * @return string
+     */
+    public function getMeniNaslov()
+    {
+        return $this->meniNaslov;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Clanak
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 }
