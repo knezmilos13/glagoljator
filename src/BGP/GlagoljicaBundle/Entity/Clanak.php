@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="clanak")
+ * @ORM\HasLifecycleCallbacks
  */
 class Clanak {
 	
@@ -39,7 +40,7 @@ class Clanak {
 	 * Naslov za meta description tag
      * @ORM\Column(type="string", length=500)
      */
-    protected $metaDescription;
+    protected $metaDescription = "";
 	
 	/**
      * @ORM\Column(type="string", length=200)
@@ -56,6 +57,23 @@ class Clanak {
      * @ORM\Column(type="text")
      */
     protected $tekst;
+	
+	
+	/** @ORM\PrePersist */
+    public function doStuffOnPrePersist() {
+        $this->srediNedostajuceVrednosti();
+    }
+	
+	/** @ORM\PreUpdate */
+    public function doStuffOnPreUpdate() {
+        $this->srediNedostajuceVrednosti();
+    }
+	
+	/* Sredjuje tipa kratak naslov, meta naslov ako ih nisi stavio - kopira iz "naslov" itd. */
+	private function srediNedostajuceVrednosti() {
+		if(empty($this->metaNaslov)) $this->metaNaslov = $this->naslov;
+		if(empty($this->meniNaslov)) $this->meniNaslov = $this->naslov;
+	}
 	
 
     /**
@@ -212,17 +230,11 @@ class Clanak {
         return $this->metaNaslov;
     }
 
-    /**
-     * Set metaDescription
-     *
-     * @param string $metaDescription
-     *
-     * @return Clanak
-     */
-    public function setMetaDescription($metaDescription)
-    {
+    /** @param string $metaDescription
+     *  @return Clanak */
+    public function setMetaDescription($metaDescription) {
+    	if($metaDescription == null) $metaDescription = "";
         $this->metaDescription = $metaDescription;
-
         return $this;
     }
 
