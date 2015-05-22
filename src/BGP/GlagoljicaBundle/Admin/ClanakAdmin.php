@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Cocur\Slugify\Slugify;
 
 class ClanakAdmin extends Admin {
 	
@@ -17,7 +18,7 @@ class ClanakAdmin extends Admin {
 			->add('meniNaslov', 'text', [ 'required' => false, 'label' => 'Kratak naslov', 'help' => 'Biće prikazan u glavnom meniju. Potencijalno isti kao naslov. Ako se ne stavi ništa ovde, biće prekopirana vrednost naslova'] )
 			->add('metaNaslov', 'text', [ 'required' => false, 'label' => 'Meta naslov', 'help' => 'Tekst koji će ići u meta "title" tag stranice kad se prikaže članak. Ako se ne stavi ništa ovde, biće prekopirana vrednost naslova' ])
 			->add('metaDescription', 'text', [ 'required' => false, 'label' => 'Meta description', 'help' => 'Tekst koji će ići u meta "description" tag stranice kad se prikaže članak.' ])
-			->add('slug', 'text', [ 'label' => 'Slug', 'help' => 'Biće nakačen na URL stranice. Najbolje da bude isto kao naslov, samo malim slovima i sa crtama (-) umesto razmaka.' ])
+			->add('slug', 'text', [ 'required' => false, 'label' => 'Slug', 'help' => 'Biće nakačen na URL stranice. Najbolje da bude isto kao naslov, samo malim slovima i sa crtama (-) umesto razmaka. Ako se ne unese ništa, biće automatski generisan (što je najbolja opcija).' ])
             ->add('tekst', 'textarea', [ 'label' => 'Tekst članka' ]);
     }
 
@@ -44,4 +45,19 @@ class ClanakAdmin extends Admin {
         '_sort_order' => 'ASC',
         '_sort_by' => 'redosled'
     );
+	
+	public function prePersist($clanak) {
+		$this->slugirajNaslov($clanak);
+	}
+	
+	public function preUpdate($clanak) {
+		$this->slugirajNaslov($clanak);
+	}
+	
+	private function slugirajNaslov($clanak) {
+		$slugger = new Slugify();
+		$slugger->addRule('đ', 'dj');
+		$slugger->addRule('Đ', 'dj');
+		$clanak->setSlug($slugger->slugify($clanak->getNaslov()));
+	}
 }

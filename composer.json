@@ -26,7 +26,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
 	    "skillshare/underscore.php": "dev-master",
 	    "sonata-project/admin-bundle": "2.3.3",
-	    "sonata-project/doctrine-orm-admin-bundle": "2.3.2"
+	    "sonata-project/doctrine-orm-admin-bundle": "2.3.2",
+	    "cocur/slugify": "1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
