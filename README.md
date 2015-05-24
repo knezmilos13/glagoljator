@@ -44,3 +44,8 @@ app/console doctrine:generate:entities BGPGlagoljicaBundle
 
 Drugo, da apdejtujes semu baze podataka:  
 php app/console doctrine:schema:update --force
+
+**Namestanje lozinke**  
+Trenutno se koristi sha512 lozinka za pristup /admin strani. I trenutno je namesten nalog admin/admin.
+Za promenu naloga koristiti ovaj link - http://hash.online-convert.com/sha512-generator
+Na tom sajtu, kada se generise Sha512, koristiti onaj sto je 64-bit enkodiran.
